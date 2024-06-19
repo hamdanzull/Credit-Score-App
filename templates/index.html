@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credit Score Classification</title>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/coin.png') }}" />
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="text-gray-900 bg-[#6610F2]">
+    <div class="w-full h-[64px] px-[80px] text-gray-50 flex items-center justify-between">
+        <a href="/">
+            <h2 class="font-bold text-2xl">Final Project</h2>
+        </a>
+        <ul class="flex">
+            <li>
+                <a class="px-5 hover:text-orange-400" href="https://github.com/hamdanzull/Credit-Score-App"
+                    target="_blank" rel="noopener noreferrer">Source</a>
+            </li>
+            <li>
+                <a class="px-5 hover:text-orange-400" href="https://www.github.com/hamdanzull" target="_blank"
+                    rel="noopener noreferrer">Profile</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="m-[80px] mb-0 py-5 bg-gray-50 rounded-3xl relative">
+        <div
+            class="absolute top-[-75px] left-1/2 transform -translate-x-1/2 flex flex-col gap-3 items-center justify-center">
+            <div class="w-[150px] h-[150px] rounded-full flex items-center justify-center  bg-gray-50">
+                <img src="{{ url_for('static', filename='images/money bag.png') }}" alt="Money Bag" srcset="">
+            </div>
+            <h2 class="font-bold text-2xl text-center">Credit Score Classification</h2>
+        </div>
+
+
+
+        <div class="flex w-full pt-[125px]">
+            <form class="w-1/2 px-8" action="/" method="post">
+                <div class="mb-5">
+                    <label class="block mb-2 font-medium text-gray-900" for="age">Umur</label>
+                    <input
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                        placeholder="Age" type="number" id="age" name="age" value="{{ age }}" required>
+                </div>
+
+                <div class="mb-5">
+                    <label class="block mb-2 font-medium text-gray-900">Jenis Kelamin</label>
+                    <div class="flex items-center gap-2">
+                        <input class="w-4 h-4 border-gray-300" type="radio" id="male" name="gender" value="Male" {% if
+                            gender=='Male' %}checked{% endif %} required>
+                        <label for="male">Laki-laki</label>
+                        <input class="ml-3 w-4 h-4 border-gray-300" type="radio" id="female" name="gender"
+                            value="Female" {% if gender=='Female' %}checked{% endif %} required>
+                        <label for="female">Perempuan</label>
+                    </div>
+                </div>
+
+                <div class="mb-5">
+                    <label class="block mb-2 font-medium text-gray-900" for="income">Pendapatan</label>
+                    <input
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                        placeholder="$ Income" type="number" id="income" name="income" value="{{ income }}" required>
+                </div>
+
+                <div class="mb-5">
+                    <label class="block mb-2 font-medium text-gray-900" for="education">Pendidikan Terakhir</label>
+                    <select
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                        id="education" name="education">
+                        <option value="Associate's Degree" {% if education=="Associate's Degree" %}selected{% endif %}>
+                            Associate's Degree</option>
+                        <option value="Bachelor's Degree" {% if education=="Bachelor's Degree" %}selected{% endif %}>
+                            Bachelor's
+                            Degree</option>
+                        <option value="Doctorate" {% if education=="Doctorate" %}selected{% endif %}>Doctorate</option>
+                        <option value="High School Diploma" {% if education=="High School Diploma" %}selected{% endif
+                            %}>
+                            High
+                            School Diploma</option>
+                        <option value="Master's Degree" {% if education=="Master's Degree" %}selected{% endif %}>
+                            Master's
+                            Degree
+                        </option>
+                    </select>
+                </div>
+
+                <div class="mb-5">
+                    <label class="block mb-2 font-medium text-gray-900">Status Pernikahan</label>
+                    <div class="flex items-center gap-2">
+                        <input class="w-4 h-4 border-gray-300" type="radio" id="married" name="marital_status"
+                            value="Married" {% if marital_status=='Married' %}checked{% endif %} required>
+                        <label for="married">Menikah</label>
+                        <input class="ml-3 w-4 h-4 border-gray-300" type="radio" id="single" name="marital_status"
+                            value="Single" {% if marital_status=='Single' %}checked{% endif %} required>
+                        <label for="single">Belum Menikah</label>
+                    </div>
+                </div>
+
+                <div class="mb-5">
+                    <label class="block mb-2 font-medium text-gray-900" for="number_of_children">Jumlah
+                        Anak</label>
+                    <input
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                        placeholder="Children" type="number" id="number_of_children" name="number_of_children"
+                        value="{{ number_of_children }}" required>
+                </div>
+
+                <div class="mb-5">
+                    <label class="block mb-2 font-medium text-gray-900">Kepemilikan Rumah</label>
+                    <div class="flex items-center gap-2">
+                        <input class="w-4 h-4 border-gray-300" type="radio" id="owned" name="home_ownership"
+                            value="Owned" {% if home_ownership=='Owned' %}checked{% endif %} required>
+                        <label for="owned">Milik
+                            Pribadi</label>
+                        <input class="ml-5 w-4 h-4 border-gray-300" type="radio" id="rented" name="home_ownership"
+                            value="Rented" {% if home_ownership=='Rented' %}checked{% endif %} required>
+                        <label for="rented">Sewa</label>
+                    </div>
+                </div>
+
+                <div class="mb-5 flex gap-3">
+                    <input
+                        class="text-white border-2 border-blue-700 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-8 py-2.5 text-center cursor-pointer"
+                        type="submit" name="predict" value="Prediksi">
+                    <input
+                        class="border-2 border-gray-200 hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 font-medium rounded-lg text-sm px-8 py-2.5 text-center cursor-pointer"
+                        type="submit" name="clear" value="Hapus">
+                </div>
+            </form>
+            <div class="w-1/2 px-8">
+                <div class="w-[350px] relative">
+                    <img class="w-full" src="{{ url_for('static', filename='images/papan.png') }}" alt="Papan"
+                        srcset="">
+                    {% if prediction_text %}
+                    <div class="absolute w-full top-1/4 flex flex-col gap-10">
+                        <h3 class="font-medium text-lg text-center">Your credit score is</h3>
+                        <h1 class="font-bold text-5xl text-center {{ color_class }}">{{ prediction_text }}</h1>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="py-5 text-gray-50">
+        <p class="text-center">&copy; 2024 <a class="font-medium hover:text-orange-400"
+                href="https://www.github.com/hamdanzull" target="_blank" rel="noopener noreferrer">hamdanzull</a> -
+            All Rights Reserved.</p>
+    </footer>
+</body>
+
+</html>
